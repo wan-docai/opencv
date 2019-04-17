@@ -61,9 +61,6 @@ def remove_face_search(no_face_directory):
     print(str(no_face_count) + ' of images out of ' + str(number_of_files) + ' that have no faces in side was found.')
 
 if __name__ == '__main__':
-    face_cascade = cv2.CascadeClassifier(frontal_face_detector_xml)
-    eye_cascade = cv2.CascadeClassifier(eye_detector_xml)
-
     # Next two lines testing if face_cascade and eye_cascade are loaded
     # face_cascade.empty()
     # eye_cascade.empty()
@@ -84,18 +81,21 @@ if __name__ == '__main__':
     parser.add_argument(
         '--frontal_face_detector_xml',
         type=str,
-        default='/Users/wan/dev/opencv/data/haarcascades/haarcascade_frontalface_default.xml'
-        help='image path to check'
+        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_frontalface_default.xml'
+        help='frontal face detector xml'
     )
     parser.add_argument(
         '--eye_detector_xml',
         type=str,
-        default='/Users/wan/dev/opencv/data/haarcascades/haarcascade_eye.xml'
-        help='image path to check'
+        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_eye.xml'
+        help='eye detector xml'
     )
 
 
     args = parser.parse_args()
+
+    face_cascade = cv2.CascadeClassifier(args.frontal_face_detector_xml)
+    eye_cascade = cv2.CascadeClassifier(args.eye_detector_xml)
 
     remove_no_face_search(args.face_directory)
     remove_face_search(args.no_face_directory)
