@@ -4,12 +4,7 @@ import os
 import glob
 import argparse
 
-face_cascade = cv2.CascadeClassifier('/Users/wan/dev/opencv/data/haarcascades/haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('/Users/wan/dev/opencv/data/haarcascades/haarcascade_eye.xml')
 
-# Next two lines testing if face_cascade and eye_cascade are loaded
-# face_cascade.empty()
-# eye_cascade.empty()
 
 def remove_no_face_search(face_directory):
     file_list = os.listdir(face_directory)
@@ -66,19 +61,39 @@ def remove_face_search(no_face_directory):
     print(str(no_face_count) + ' of images out of ' + str(number_of_files) + ' that have no faces in side was found.')
 
 if __name__ == '__main__':
+    face_cascade = cv2.CascadeClassifier(frontal_face_detector_xml)
+    eye_cascade = cv2.CascadeClassifier(eye_detector_xml)
+
+    # Next two lines testing if face_cascade and eye_cascade are loaded
+    # face_cascade.empty()
+    # eye_cascade.empty()
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
         '--face_directory',
         type=str,
-        help='image path to check'
+        help='face image path to check'
     )
 
     parser.add_argument(
         '--no_face_directory',
         type=str,
+        help='no face image path to check'
+    )
+    parser.add_argument(
+        '--frontal_face_detector_xml',
+        type=str,
+        default='/Users/wan/dev/opencv/data/haarcascades/haarcascade_frontalface_default.xml'
         help='image path to check'
     )
+    parser.add_argument(
+        '--eye_detector_xml',
+        type=str,
+        default='/Users/wan/dev/opencv/data/haarcascades/haarcascade_eye.xml'
+        help='image path to check'
+    )
+
 
     args = parser.parse_args()
 
