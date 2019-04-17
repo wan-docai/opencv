@@ -4,8 +4,6 @@ import os
 import glob
 import argparse
 
-
-
 def remove_no_face_search(face_directory):
     file_list = os.listdir(face_directory)
     images = glob.glob(os.path.join(face_directory, '*.jpg'))
@@ -78,16 +76,17 @@ if __name__ == '__main__':
         type=str,
         help='no face image path to check'
     )
+
     parser.add_argument(
         '--frontal_face_detector_xml',
         type=str,
-        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_frontalface_default.xml'
+        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_frontalface_default.xml',
         help='frontal face detector xml'
     )
     parser.add_argument(
         '--eye_detector_xml',
         type=str,
-        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_eye.xml'
+        default='/home/wan/github_wan-docai_opencv/data/haarcascades/haarcascade_eye.xml',
         help='eye detector xml'
     )
 
