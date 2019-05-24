@@ -18,6 +18,7 @@ def remove_face_search(no_face_directory):
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         except:
             print(image)
+            os.remove(os.path.join(image))
             continue
 
         if (len(faces) != 0):
