@@ -84,7 +84,8 @@ def main(input):
 #     for index, row in df.iterrows():
 #         row[0] as input
 
-    cap = cv.VideoCapture(input if input else 0)
+    # cap = cv.VideoCapture(input if input else 0)
+    cap = cv.imshow(input if input else 0)
 
     while cv.waitKey(1) < 0:
         # Read frame
