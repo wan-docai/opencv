@@ -11,6 +11,7 @@ def remove_face_search(no_face_directory):
 
     face_image_count = 0
     no_face_count = 0
+    defected_image = 0
     for image in images:
         try:
             img = cv2.imread(image)
@@ -18,6 +19,7 @@ def remove_face_search(no_face_directory):
             faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         except:
             print(image)
+            defected_image += 1
             os.remove(os.path.join(image))
             continue
 
@@ -31,6 +33,7 @@ def remove_face_search(no_face_directory):
     print('A total of ' + str(number_of_files) + ' was screened by haarcascade face detection.')
     print(str(face_image_count) + ' of images out of ' + str(number_of_files) + ' that have faces inside was found.')
     print(str(no_face_count) + ' of images out of ' + str(number_of_files) + ' that have no faces in side was found.')
+    print(str(defected_image) + ' of defected images were removed.')
 
 if __name__ == '__main__':
     # Next two lines testing if face_cascade and eye_cascade are loaded
